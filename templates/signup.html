@@ -1,0 +1,10 @@
+
+{% block title %}
+<H1>Sign Up</H1>
+
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<button value="Submit" >Sign Up</button>
+</form>
+{% endblock %}
