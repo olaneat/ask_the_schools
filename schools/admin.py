@@ -1,10 +1,12 @@
 from django.contrib import admin
-from .models import Reg_Schools, parent_signup
+from .models import Schools, parent_signup
 # Register your models here.
 
-@admin.register(Reg_Schools)
-class Reg_schoolsadmin(admin.ModelAdmin):
+
+@admin.register(Schools)
+class schoolsadmin(admin.ModelAdmin):
 	list_display = ('School_name', 'school_badge', 'short_video','address')
+
 
 @admin.register(parent_signup)
 class parent_signup (admin.ModelAdmin):

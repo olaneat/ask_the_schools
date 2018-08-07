@@ -18,12 +18,12 @@ from django.urls import path
 from django.urls import include
 from django.views.generic.base import TemplateView
 from django.conf import settings
-#from django.conf.urls.static static
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('schools/', include('schools.urls')),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 LOGIN_REDIRECT_URL = '/'
 
 

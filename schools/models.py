@@ -6,10 +6,10 @@ from django.urls import reverse
 # Create your models here.
 
 
-class Reg_Schools(models.Model):
+class Schools(models.Model):
 	School_name = models.CharField(max_length = 300, help_text  = "fill in the name of the school below")
 	address = models.CharField(max_length  = 250 )
-	school_badge = models.FileField(upload_to = "media/images", default = True, help_text = "upload a jpg, ping file" )
+	school_badge = models.FileField(upload_to = "media/images", default = True, help_text = "upload a jpg file ")
 	school_info = models.TextField(max_length = 1000)
 	short_video = models.FileField(upload_to = 'media/video', default = True, help_text = "upload a video file, mp4, " )	
 
