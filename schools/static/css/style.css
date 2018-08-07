@@ -1,5 +1,14 @@
-.customeFirst{
+.customFirst{
 	min-height: 200px;
 	width: 100%
 	color: silver;
 }
+li{
+	display: inline;
+ 	padding-right: 10px;
+
+ }
+ul a{
+ 	color: #black;
+
+ }
