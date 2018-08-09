@@ -30,3 +30,9 @@ class parent_signup(models.Model):
 
 	def __str__(self):
 		return '{0}, {1} '.format(self.surname, self.first_name) 
+
+class parents_remark(models.Model):
+	parents_name = models.CharField(max_length = 300, help_text = "fill in your full name" )
+	School_in_review_name= models.CharField(max_length = 150, help_text = "fill in the school name" )
+	comment = models.TextField(max_length =1000 )
+	

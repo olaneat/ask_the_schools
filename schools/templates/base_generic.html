@@ -7,43 +7,59 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <!-- Bootstrap -->
-
+    
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %} ">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <div class="container">
     	<div class="row">
     		<div col-md-4>
+    			<div class="titleBar">
     			<h3><span class="text-primary">A</span>sk the Schools</h3>
     		</div>
+    			</div>
     		<div class="col-md-4">
+    			<div class="SearchBar" >
     			Search Bar
     		</div>
+    		</div>
     		<div class="col-md-4">
+    			<div class="linkBar">
+
     			<ul>
-    				<li class="list-inline" ><a href="#">Home</a></li>
-    				<li class="list-inline" ><a href="#">Login</a></li>
-    				<li class="list-inline" ><a href="#">Contact</a></li>
+    				<li ><a href="#">Home</a></li>
+    				<li  ><a href="#">Login</a></li>
+    				<li ><a href="#">Contact</a></li>
     			</ul>
+    			</div>
     		</div>
     	</div>
     </div>
 
 </head>
 <body>
+ <div class="container">
+        <div class="row" >
+            <div class="col-lg-12">
+            <div  class="Header">
+            	<pre>
+                <p class="text text-uppercase" align="center" >Select the <span class="text-info">Ideal</span> Institution For your <span class="text-primary">Kids</span></p>
+
+
+
+
+
+                <p class=" text2 text-uppercase" align="center">Pick The Educational Level</p>
+                </pre>
+                <button  class="btn btn-primary outline" >Primary 
+           & Pre-Primary School</button>
+           <button class=" btn btn-info" >Secondary Schools</button>
+            </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

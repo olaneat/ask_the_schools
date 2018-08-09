@@ -116,7 +116,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__)+'/..')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -124,5 +124,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+
  #   '/var/www/static/',
 ]
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'bootstrap'),
+    os.path.join(PROJECT_ROOT, 'assets'),
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
