@@ -7,6 +7,9 @@ from django.contrib.auth.forms import UserCreationForm
 
 from django.views import generic
 
+class SchoolDetailView(generic.ListView):
+	models = Schools
+
 # Create your views here.
 def index(request):
 	return render (request, 'index.html')
@@ -38,3 +41,5 @@ def signUp(request):
 		else:
 			form = UserCreationForm()
 			return render(request, 'signup.html', {form.form})
+
+

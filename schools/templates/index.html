@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% load static %}
+{% block content %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,8 +31,70 @@
             </div>
             </div>
         </div>
+     <div class="row">
+            <h3>Registered Schools</h3><br>
+           
+            <ul>
+                
+         
+         <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="schoolsDisplay" >
+                {% for school in school_list %}
+                <li>
+                    <a href=" {{school.get_absuolute_url }} ">{{school.school_badge}}</a>
+                    </li>
+                    {% empty %}
+
+                     <p>There is no school registered </p>
+
+                {% endfor %}
+             </div>
+         </div>
+         <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="schoolsDisplay" >
+                
+                <li>
+                    <a href=" {{school.get_absuolute_url }} ">{{school.badge}}</a>
+                </li>
+                
+             </div>
+         </div>
+          <div class="col-lg-4 col-md-4 col-sm-4">
+              <div class="schoolsDisplay" >
+                
+                <li>
+                    <a href=" {{school.get_absuolute_url }} ">{{school.badge}}</a>
+                </li>
+                
+             </div>
+          </div>
+    <div class="row">
+         <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="schoolsDisplay" >
+                {% for school in school_list %}
+                <li>
+                    <a href=" {{school.get_absuolute_url }} ">{{school.badge}}</a>
+                </li>
+             </div>
+         </div>
+         <div class="col-lg-4 col-md-4 col-sm-4"></div>
+          <div class="col-lg-4 col-md-4 col-sm-4"></div>
+  <div class="row">
+         <div class="col-lg-4 col-md-4 col-sm-4"></div>
+         <div class="col-lg-4 col-md-4 col-sm-4"></div>
+          <div class="col-lg-4 col-md-4 col-sm-4"></div>
+    <div class="row">
+         <div class="col-lg-4 col-md-4 col-sm-4"></div>
+         <div class="col-lg-4 col-md-4 col-sm-4"></div>
+          <div class="col-lg-4 col-md-4 col-sm-4"></div>
+  
+ {% endfor %}     
+ </ul>
+
+    </div>
+     </div>   
     </div>
 
 </body>
-
+{% endblock %}
 
