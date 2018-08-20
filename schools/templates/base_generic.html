@@ -19,21 +19,27 @@
 
     <div class="container">
     	<div class="row">
-    		<div col-md-4>
+    		<div class="col-lg-4" >
     			<div class="titleBar">
-    			<h3><span class="text-primary">A</span>sk the Schools</h3>
+    			<h4><span class="text-primary">A</span>sk the Schools</h4>
     		</div>
     			</div>
-    		<div class="col-md-4">
-    			<div class="SearchBar" >
-    			Search Bar
-    		</div>
-    		</div>
-    		<div class="col-md-4">
+    		
+            <div class="col-lg-4 ">
+            <div class="input-group">
+             <span class="input-group-btn">
+            <button class="btn btn-default" type="button">search</button>
+             </span>
+             <input type="text" class="form-control" placeholder ="Quick Search.."> 
+                    
+             </div>
+                
+            </div>
+    		
+    		<div class="col-lg-4">
     			<div class="linkBar">
-
-    			<ul>
-    				<li ><a href="#">Home</a></li>
+       			<ul class="nav nav-pills">
+    				<li class="active" ><a href="#">Home</a></li>
     				<li  ><a href="#">Login</a></li>
     				<li ><a href="#">Contact</a></li>
     			</ul>
@@ -44,7 +50,8 @@
 {% endblock %}</div>
 
 <div id="content">
-{% block content%} {% endblock %}
+{% block content%}
+ {% endblock %}
 </div>
 </head>
 </html>
