@@ -56,7 +56,7 @@ ROOT_URLCONF = 'askschools.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["os.path.join(BASE_DIR, 'templates')",],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,10 +128,6 @@ STATICFILES_DIRS = [
  #   '/var/www/static/',
 ]
 
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'bootstrap'),
-    os.path.join(PROJECT_ROOT, 'assets'),
-)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
