@@ -25,28 +25,15 @@
     		</div>
     			</div>
     		
-            <div class="col-lg-4 ">
-            <div class="input-group">
-             <span class="input-group-btn">
-            <button class="btn btn-default" type="button">search</button>
-             </span>
-             <input type="text" class="form-control" placeholder ="Quick Search.."> 
-                    
-             </div>
-                
-            </div>
-    		
-    		<div class="col-lg-4">
-    			<div class="linkBar">
-       			<ul class="nav nav-pills">
-    				<li class="active" ><a href="#">Home</a></li>
-    				<li  ><a href="#">Login</a></li>
-    				<li ><a href="#">Contact</a></li>
-    			</ul>
-    			</div>
-    		</div>
-    	</div>
     </div>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    
+</div>
+
+
+
+
 {% endblock %}</div>
 
 <div id="content">
@@ -54,4 +41,23 @@
  {% endblock %}
 </div>
 </head>
+<body>
+    {% block footer %}
+    <nav class="navbar navbar-default">
+        <div class="navbar-collapse collapse">
+            <ul class=" nav navbar-nav">
+                <li><a href="{static '#'}">Term & Condition</a></li>
+                <li><a href="{%  static '#' %}">contact us</a> </li>
+                <form class="navbar-form" role="search">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search...">
+                        <button class="btn btn-default" type="button">Search</button>
+                    </div>
+                    
+                </form>
+            </ul>
+        </div>
+    </nav>
+    {% endblock  %}
+</body>
 </html>
