@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.urls import reverse_lazy
-from .models import parent_signup, Schools
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import  Schools, profile, school_data, parents_remark
 from django.contrib.auth.forms import UserCreationForm
 
 
