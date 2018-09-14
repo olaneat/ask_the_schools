@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from formtools.wizard.views import SessionWizardView
 from django.contrib.auth import login, authenticate
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import  Schools, profile, school_data, parents_remark
 from django.contrib.auth.forms import UserCreationForm
+from django.core.mail import send_mail
 
 
 from django.views import generic
@@ -29,18 +31,25 @@ def index(request):
 
 	
 
-def signUp(request):
-	if request.method == 'POST':
-		form = UserCreationForm(request.POST)
-		if form.is_valid():
-			form.save()
-			username = form._cleaned_data.get('username')
-			raw_password = form._cleaned_data.get('password')
-			user = authenticate(username=username, raw_password=password)
-			login(request, user)
-			return('parent')
-		else:
-			form = UserCreationForm()
-			return render(request, 'signup.html', {form.form})
+class addSchools(CreateView):
+	models = Schools
+	fields = ['name', 'motto', 'badge', 'level', 'advantage', 'address', 'town', 'state', 'status', 'fees_range', 'school_email', 'school_Phone_Num']
+
+
+class addSchoolWizard(SessionWizardView):
+	template_name =  'profileschool.html'
+
+	def done(self, form_list, **kwargs):
+		form_data = preocess_data(form_list)
+		return render('done.html', { 'form_data': form_data}
+			)
+
+def process_data(form_list):
+	form_data = [form.cleaned_data for form in form_list]
+	send_mail(form_data[0]['profile'],
+		form_data[1]['Schools'], form_data[2]['school_data'],
+		['tosinayoola0@gmail.com'], fail_silently = False)
+
+	return form_data
 
 
