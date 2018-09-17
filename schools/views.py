@@ -37,11 +37,11 @@ class addSchools(CreateView):
 	fields = ['name', 'motto', 'badge', 'level', 'advantage', 'address', 'town', 'state', 'status', 'fees_range', 'school_email', 'school_Phone_Num']
 
 
-class add_School(SessionWizardView):
+class addSchool(SessionWizardView):
 	template_name =  'schoolprofile.html'
 
 	def done(self, form_list, **kwargs):
-		form_data = process_data(form_list)
+		form_data = preocess_data(form_list)
 		return render('done.html', { 'form_data': form_data}
 			)
 
