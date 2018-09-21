@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     'schools',
-     'formtools',
+    'schools',
+    'formtools',
+    'crispy_forms'
+
     
 ]
 
@@ -135,3 +137,11 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+EMAIL_BACKEND = 'django.core.mail.backend.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'tosinayoola0@gmail.com'
+EMAIL_HOST_PASSWORD =  'Olaniyi081'
+

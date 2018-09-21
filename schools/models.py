@@ -6,6 +6,9 @@ from django.urls import reverse
 
 # Create your models here.
 
+
+
+
 Title =(
 	('Mr.', 'Mr.'),
 	('Mrs.', 'Mrs.'),
@@ -86,7 +89,7 @@ class profile(models.Model):
 class Schools(models.Model):
 	name = models.CharField(max_length = 300, help_text  = "fill in the name of the school below")
 	motto = models.CharField(null = True, max_length = 200, help_text = 'enter the school motto above ' )
-	badge = models.FileField(upload_to = "media/images", null = True, blank= True, help_text = "upload a jpg file ")
+	badge = models.ImageField(upload_to = "media/images", null = True, blank= True, help_text = "upload a jpg file ")
 	level = models.CharField(null = True, max_length = 10, choices = LEVEL)
 	advantage = models.TextField(null = True, max_length = 1000, help_text = 'what do parents tend to benefit  by entrusting their children in your school not more than 1000 characters'  )
 	address = models.CharField(null = True, max_length  = 250 )
@@ -106,7 +109,7 @@ class Schools(models.Model):
 class school_data(models.Model):
 	curriculum = models.CharField(max_length =7,  choices = CURRICULUM )
 	facilites = models.CharField(max_length = 10)
-	website = models.CharField(max_length = 100, )
+	website = models.URLField(max_length = 100, )
 	extra_curriculum = models.CharField(max_length = 20)
 	date_established = models.DateField('') 
 	awards = models.CharField( max_length = 150, help_text ='kindly list the schools Awards')
@@ -122,3 +125,12 @@ class parents_remark(models.Model):
 	school_name= models.CharField(max_length =100 , null = True  )
 	comment = models.TextField(max_length =1000 )
 	
+
+class ContactUs(models.Model):
+	full_name = models.CharField(max_length = 300 )
+	title = models.CharField(max_length = 100, blank = True)
+	email= models.EmailField(max_length =100 , null = True  )
+	comment = models.TextField(max_length =1000 )
+
+	def __str__(self):
+		return self.title

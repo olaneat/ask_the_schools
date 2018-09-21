@@ -1,16 +1,28 @@
-from django.forms import forms
-from . models import profile, Schools, school_data
+from django.forms import forms, ModelForm
+from . models import profile, Schools, school_data, ContactUs
 
-class profileForm(forms.Form):
+class profileForm(ModelForm):
 	class Meta:
-		Model = profile
+		model = profile
+		fields = ['title', 'first_name', 'surname', 'email', 'password']
 
 
-class SchoolsForm(forms.Form):
+class SchoolsForm(ModelForm):
 	class Meta:
-		Model = Schools
+		model = Schools
+		fields = ['name','badge', 'motto', 'advantage', 'address', 'status', 'fees_range', 'school_email', 'school_Phone_Num', 'video', 'town', 'state']
 
-class school_dataForm(forms.Form):
+class school_dataForm(ModelForm):
 	class Meta:
-		Model = school_data
+		model = school_data
+		fields = ['curriculum', 'facilites', 'extra_curriculum', 'date_established', 'awards', 'Direction', 'website']
+
+
+class ContactUsForm(ModelForm):
+	class Meta:
+		model = ContactUs
+		fields = ['full_name', 'email', 'title', 'comment']
+
+
+
 		
