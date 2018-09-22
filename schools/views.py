@@ -85,7 +85,7 @@ def Contact(request):
 			model_instance =form.save(commit = False)
 			model_instance.timestamp = timezone.now()
 			model_instance.save()
-			return('/')
+			return redirect('/')
 
 
 	else:

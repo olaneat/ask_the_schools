@@ -21,7 +21,7 @@ class school_dataForm(ModelForm):
 class ContactUsForm(ModelForm):
 	class Meta:
 		model = ContactUs
-		fields = ['full_name', 'email', 'title', 'comment']
+		fields = ['full_name', 'email',  'comment']
 
 
 

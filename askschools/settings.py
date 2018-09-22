@@ -85,6 +85,17 @@ DATABASES = {
     }
 }
 
+EMAIL_BACKEND = 'django.core.mail.backend.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'tosinayoola0@gmail.com'
+EMAIL_HOST_PASSWORD =  'Olaniyi081'
+
+
+
+
+
 
 MEDIAL_URL = '/media'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -138,10 +149,6 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-EMAIL_BACKEND = 'django.core.mail.backend.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'tosinayoola0@gmail.com'
-EMAIL_HOST_PASSWORD =  'Olaniyi081'
 
+
+CRISPY_FORM_TEMPLATE = 'bootstrap3'
