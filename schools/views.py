@@ -24,8 +24,6 @@ from django.views import generic
 
 
 
-
-
 #class SchoolDetailView(generic.ListView):
 #	models = Schools
 
@@ -53,7 +51,7 @@ def index(request):
 #	fields = ['name', 'motto', 'badge', 'level', 'advantage', 'address', 'town', 'state', 'status', 'fees_range', 'school_email', 'school_Phone_Num']
 
 
-class add_School(WizardView):
+class add_School(SessionWizardView):
 	template_name =  'schoolprofile.html'
 	file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'images', 'videos'))
 
@@ -61,16 +59,16 @@ class add_School(WizardView):
 
 	def done(self, form_list, **kwargs):
 		form_data = process_data(form_list)
-		return render('done.html', { 'form_data': form_data}
-			)
+		return render('schooldetail.html', { 'form_data': form_data})
+			
 
 
 
-def processdata(form_list):
+def process_data(form_list):
 	form_data = [form.cleaned_data for form in form_list]
 	send_mail(form_data[0]['profile'],
 		form_data[1]['Schools'], form_data[2]['school_data'],
-		['tosinayoola0@gmail.com'], fail_silently = False)
+		['tosinayoola0@gmail.com', ], fail_silently = False)
 
 	return form_data
 
