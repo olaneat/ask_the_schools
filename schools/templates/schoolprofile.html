@@ -1,4 +1,3 @@
-
 {% load i18n %}
 {% load crispy_forms_tags %}
 {% load static %}
@@ -6,72 +5,74 @@
 
 
 <!DOCTYPE html>
-      <head>
-      	<title>PROFILE YOUR SCHOOL</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %} ">
+
+<head>
+	<title>PROFILE YOUR SCHOOL</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %} ">
 	<div id="title">
-		{%block title%}	
-	<script type="text/javascript" src="{% static 'files.js' %}"></script>
-<div class="btm_border">
-    <div class="h_bg">
-    <div class="wrap">
-    <div class="header">
-        <div class="logo">
-            <h1 class="text text-success">Ask The Schools</h1>
-        </div>
-        <div class="social-icons">
-            <ul>
-                 <li><a class="facebook" href="#" target="_blank"> </a></li>
-                 <li><a class="twitter" href="#" target="_blank"></a></li>
-                 <li><a class="googleplus" href="#" target="_blank"></a></li>
-                 <li><a class="pinterest" href="#" target="_blank"></a></li>
-                 <li><a class="instagram" href="#" target="_blank"></a></li>
-                 <li><a class="vimeo" href="#" target="_blank"></a></li>
-           </ul>
-        </div>  
-        <div class="clear"></div>
-    </div>
-    
-{% endblock %}</div>
+		{%block title%}
+		<script type="text/javascript" src="{% static 'files.js' %}"></script>
+		<div class="btm_border">
+			<div class="h_bg">
+				<div class="wrap">
+					<div class="header">
+						<div class="logo">
+							<h1 class="text text-success">Ask The Schools</h1>
+						</div>
+						<div class="social-icons">
+							<ul>
+								<li><a class="facebook" href="#" target="_blank"> </a></li>
+								<li><a class="twitter" href="#" target="_blank"></a></li>
+								<li><a class="googleplus" href="#" target="_blank"></a></li>
+								<li><a class="pinterest" href="#" target="_blank"></a></li>
+								<li><a class="instagram" href="#" target="_blank"></a></li>
+								<li><a class="vimeo" href="#" target="_blank"></a></li>
+							</ul>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+					{% endblock %}
+				</div>
 
 
 </head>
 
-      
-   <body>
 
-{% block content %}
-   	<div class="container">
-   		<h3>Step {{wizard.steps.step1 }} of {{wizard.steps.count}} </h3>
-   		{% for field in form %}
-   			{{ field.error }}
+<body>
+
+	{% block content %}
+	<div class="container">
+		<h3>Step {{wizard.steps.step1 }} of {{wizard.steps.count}} </h3>
+		{% for field in form %}
+		{{ field.error }}
 
 
-   		{%  endfor %}
+		{% endfor %}
 		<form method="Post" action="/add_School/">
-   				{%  csrf_token %}
-   				<table>
-   					{{ wizard.management_form }}
-   					{% if wizard.form.forms %}
-   						{{ wizard.form.management_form }}
-   						{% for form in wizard.form.forms %}
-   							{{ form | crispy }}	
-   						{% endfor %}
-   					{% else %}
-   						{{ wizard.form }}
-   					{% endif %}
-   				</table>
-
-				{% if wizard.steps.prev %}
-				<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
-				<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
+			{% csrf_token %}
+			<table>
+				{{ wizard.management_form }}
+				{% if wizard.form.forms %}
+				{{ wizard.form.management_form }}
+				{% for form in wizard.form.forms %}
+				{{ form | crispy }}
+				{% endfor %}
+				{% else %}
+				{{ wizard.form }}
 				{% endif %}
-				<button type="submit" class="btn btn-success" value=" {%trans submit%}" name="submit">Submit</button> 
+			</table>
 
-   		</form>
+			{% if wizard.steps.prev %}
+			<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
+			<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
+			{% endif %}
+			<button type="submit" class="btn btn-success" value=" {%trans submit%}" name="submit">Submit</button>
+
+		</form>
 
 
-	  	</div>
-	{%  endblock %}
+	</div>
+	{% endblock %}
 
-   </body>
+</body>
