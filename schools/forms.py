@@ -1,3 +1,5 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit, Layout, Div, Button, Fieldset
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -6,11 +8,13 @@ from . models import profile, Schools, school_data, ContactUs
 
 
 
+
 class profileForm(UserCreationForm):
 	class Meta:
 		model = User
-		fields = ['email', 'first_name', 'last_name',  'username',  'password1', 'password2']
-		
+		fields = ['email', 	'first_name', 'last_name', 'username','password1', 'password2']
+
+
 		def save(self, commit = True):
 			user  = super(profileForm, self).save(commit =  False)
 			user.first_name =  self.cleaned_data['first_name']
@@ -22,6 +26,8 @@ class profileForm(UserCreationForm):
 
 			return user
 
+
+		
 
 #class profileForm(ModelForm):
 #	class Meta:
