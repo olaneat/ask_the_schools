@@ -7,10 +7,16 @@
 
 <!DOCTYPE html>
       <head>
+      	 <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    
       	<title>PROFILE YOUR SCHOOL</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %} ">
 	<div id="title">
 		{%block title%}	
+
 	<script type="text/javascript" src="{% static 'files.js' %}"></script>
 <div class="btm_border">
     <div class="h_bg">
@@ -42,36 +48,32 @@
 
 {% block content %}
    	<div class="container">
-   		<h3>Step {{wizard.steps.step1 }} of {{wizard.steps.count}} </h3>
+   		<h3 align="center">Step {{wizard.steps.step1 }} of {{wizard.steps.count}} </h3>
    		{% for field in form %}
    			{{ field.error }}
 
 
    		{%  endfor %}
-		<form method="Post" action="/add_School/">
-   				{%  csrf_token %}
-   				<table>
-   					{{ wizard.management_form }}
-   					{% if wizard.form.forms %}
-   						{{ wizard.form.management_form }}
-   						{% for form in wizard.form.forms %}
-   							{{ form | crispy }}	
-   						{% endfor %}
-   					{% else %}
-   						{{ wizard.form }}
-   					{% endif %}
-   				</table>
-
-				{% if wizard.steps.prev %}
-				<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
-				<button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
-				{% endif %}
-				<button type="submit" class="btn btn-success" value=" {%trans submit%}" name="submit">Submit</button> 
-
-   		</form>
-
-
-	  	</div>
-	{%  endblock %}
-
+<div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h1 class="mt-2">HFR Signup Form</h1>
+                <hr class="mt-0 mb-4">
+                {% block content %}
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <p>
+                        {{ field |as_crispy_field  }}
+                        {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </p>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-success">Sign up</button>
+                </form>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
    </body>
