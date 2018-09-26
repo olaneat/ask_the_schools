@@ -1,3 +1,6 @@
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
@@ -55,6 +58,21 @@ class add_School(SessionWizardView):
 	template_name =  'schoolprofile.html'
 	file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'images', 'videos'))
 
+	def register(request):
+		if method.request == "POST" :
+			form = UserCreationForm(request.POST)
+			if form.is_valid():
+				form.save()
+				email = form.cleaned_data.get('email')
+				password = form.cleaned_data.get('password1')
+				user = authenticate(email=email, password = raw_password)
+				login = (request, user )
+		else:
+			form = UserCreationForm()
+			return render(request, 'schoolprofile.html', {'form': form})
+
+	
+
 
 
 	def done(self, form_list, **kwargs):
@@ -66,6 +84,7 @@ class add_School(SessionWizardView):
 
 def process_data(form_list):
 	form_data = [form.cleaned_data for form in form_list]
+	
 	send_mail(form_data[0]['profile'],
 		form_data[1]['Schools'], form_data[2]['school_data'],
 		['tosinayoola0@gmail.com', ], fail_silently = False)

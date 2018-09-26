@@ -9,7 +9,7 @@ urlpatterns = [
 	#path('', views.TemplateView, (template_name = 'index')),
 	#path('schools/', views.SchoolDetailView.as_view(), name ='schools'),
 
-	path(r'add_schools/', add_School.as_view([profileForm, SchoolsForm, school_dataForm]), name = 'add_Schools'),
+	path(r'add_schools', add_School.as_view([profileForm, SchoolsForm, school_dataForm]), name = 'add_Schools'),
 	path('contact/', views.Contact, name = 'Contact')
 	
 	]

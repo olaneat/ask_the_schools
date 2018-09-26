@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
 import uuid
@@ -84,7 +85,10 @@ class profile(models.Model):
 	first_name = models.CharField(max_length = 50, blank = False)
 	surname = models.CharField(max_length = 50, blank = False)
 	email = models.EmailField(max_length = 100, help_text = "enter your E-mail address here")
-	password = models.CharField(max_length =100 )
+	password = models.CharField(max_length =100,  )
+	password2 = models.CharField(max_length =100, blank =  False,  help_text="retype your password again")
+	username =  models.CharField(max_length =  100, blank = False  )
+
 
 class Schools(models.Model):
 	name = models.CharField(max_length = 300, help_text  = "fill in the name of the school below")
