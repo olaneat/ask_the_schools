@@ -11,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
       	<title>PROFILE YOUR SCHOOL</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %} ">
 	<div id="title">
@@ -66,12 +67,12 @@
 		<table>
 			{{ wizard.management_form }}
 			{% if wizard.form.forms %}
-    			{{ wizard.form.management_form }}
+    			{{ wizard.form.management_form |as_crispy_field }}
     			{% for form in wizard.form.forms %}
         			{{ form | crispy }}
     			{% endfor %}
 			{% else %}
-    			{{ wizard.form }}
+    			{{ wizard.form | crispy }}
 			{% endif %}
 
 </table>
