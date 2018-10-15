@@ -6,6 +6,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from . models import profile, Schools, school_data, ContactUs
 
+
+
+
+
 clubs = (
 	('jet', 'Jet Club'),
 	('Science', 'Science Club'),
@@ -25,6 +29,12 @@ clubs = (
 
 	)
  	
+sex = [
+ 	('male', 'Male'),
+ 	('female', 'Female'),
+ 	('mixed', 'Mixed'),
+ 	]
+ 
 
 sport = (
 	( 'Swimming Pool', 'Swimming '),
@@ -70,7 +80,7 @@ class profileForm(UserCreationForm):
 
 
 class SchoolsForm(ModelForm):
-	Name = forms.CharField(
+	NAME = forms.CharField(
 		widget = forms.TextInput(
 			attrs ={
 			'placeholder': "School Name ...."
@@ -78,7 +88,7 @@ class SchoolsForm(ModelForm):
 	 )
 		)
 
-	motto = forms.CharField(
+	MOTTO = forms.CharField(
 		widget = forms.TextInput(
 			attrs ={
 			'placeholder': "School motto  ...."
@@ -86,7 +96,7 @@ class SchoolsForm(ModelForm):
 	 )
 		)
 
-	email = forms.CharField(
+	EMAIL = forms.CharField(
 		widget = forms.TextInput(
 			attrs ={
 			'placeholder': "Offical School email  ...."
@@ -95,7 +105,7 @@ class SchoolsForm(ModelForm):
 		)
 
 
-	Phone = forms.CharField(
+	PHONE = forms.CharField(
 		widget = forms.TextInput(
 			attrs ={
 			'placeholder': "Offical School Phone Number  ...."
@@ -103,20 +113,26 @@ class SchoolsForm(ModelForm):
 	 )
 		)
 
+	GENDER = forms.ChoiceField(label =" SCHOOL GENDER",
+		choices = sex, 
+		widget = forms.RadioSelect(),
+		)
 
 	class Meta:
 		model = Schools
-		fields = ['Name','badge', 'motto', 'advantage', 'address', 'status', 'fees_range', 'email', 'Phone', 'video', 'town', 'state']
+		fields = ['NAME','MOTTO', 'BADGE', 'ADVANTAGE', 'GENDER', 'ADDRESS', 'STATUS', 'FEES_RANGE', 'EMAIL', 'PHONE', 'VIDEO', 'TOWN', 'STATE']
 
 class school_dataForm(ModelForm):
-	extra_curriculum = forms.MultipleChoiceField(
+	EXTRA_CURRICULUM = forms.MultipleChoiceField(
+		label = 'CLUB ACTIVITIES',
 		required = False,
 		widget = forms.CheckboxSelectMultiple,
 		choices = clubs 
 		)
 
 
-	sport_activities = forms.MultipleChoiceField(
+	SPORT_ACTIVITES = forms.MultipleChoiceField(
+		label = 'SPORTING ACTIVITES',
 		widget = forms.CheckboxSelectMultiple,
 		required = False,
 		choices = sport)
@@ -124,7 +140,7 @@ class school_dataForm(ModelForm):
 
 	class Meta:
 		model = school_data
-		fields = ['curriculum', 'sport_activities', 'extra_curriculum', 'date_established', 'awards', 'Direction', 'website']
+		fields = ['CURRICULUM', 'SPORT_ACTIVITES', 'EXTRA_CURRICULUM',  'AWARDS', 'DIRECTION', 'WEBSITE']
 
 
 class ContactUsForm(ModelForm):
