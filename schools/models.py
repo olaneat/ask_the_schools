@@ -8,6 +8,19 @@ from django.urls import reverse
 # Create your models here.
 
 
+school_fees  =( 
+	('#51,000.00 - #100,000.00', '#51,000.00 - #100,000.00'),
+	('#101,000.00 - 200,000.00', '#101,000.00 - 200,000.00' ),
+	('#201,000.00  - 300,000.00', '#201,000.00  - 300,000.00'),
+	('#301,000.00  - 400,000.00', '#301,000.00  - 400,000.00'),
+	('#401,000.00  - 500,000.00', '#401,000.00  - 500,000.00'),
+	('#501,000.00  - 600,000.00', '#501,000.00  - 600,000.00'),	
+	('#601,000.00  - 700,000.00', '#601,000.00  - 700,000.00'),	
+	('#701,000.00  - 800,000.00', '#701,000.00  - 800,000.00'),
+	('#801,000.00  - 900,000.00', '#801,000.00  - 900,000.00'),
+	('#901,000.00  - 1,000,000.00', '#901,000.00  - 1,000,000.00'),
+
+	)
 
 
 Title =(
@@ -91,8 +104,8 @@ class profile(models.Model):
 
 
 class Schools(models.Model):
-	name = models.CharField(max_length = 300, help_text  = "fill in the name of the school below")
-	motto = models.CharField(null = True, max_length = 200, help_text = 'enter the school motto above ' )
+	Name = models.CharField(max_length = 300, )
+	motto = models.CharField(null = True, max_length = 200,  )
 	badge = models.ImageField(upload_to = "media/images", null = True, blank= True, help_text = "upload a jpg file ")
 	level = models.CharField(null = True, max_length = 10, choices = LEVEL)
 	advantage = models.TextField(null = True, max_length = 1000, help_text = 'what do parents tend to benefit  by entrusting their children in your school not more than 1000 characters'  )
@@ -100,10 +113,10 @@ class Schools(models.Model):
 	town = models.CharField(null = True, max_length = 100, help_text = 'enter the Local Government Area')
 	state = models.CharField(null = True, max_length = 4, choices = STATE)	
 	video = models.FileField(upload_to = 'media/video', null = True, blank= True, help_text = "upload a video file, mp4, " )	
-	status = models.CharField(blank = True, max_length = 20, help_text ="kindly select the school type i.e Boarding or Day", choices = school_status)
-	fees_range = models.CharField(max_length = 70, help_text = 'kindly enter the appropriate fees', null = True)
-	school_email = models.EmailField(blank = True, max_length = 50, help_text = "enter the school email address")
-	school_Phone_Num = models.CharField(null = True, max_length = 15)
+	status = models.CharField(blank = True, max_length = 20, choices = school_status)
+	fees_range = models.CharField(max_length = 70,  null = True, choices = school_fees  )
+	email = models.EmailField(blank = True, max_length = 50, )
+	Phone = models.CharField(null = True, max_length = 15)
 
 
 	def get_absolute_url(self):
@@ -118,6 +131,7 @@ class school_data(models.Model):
 	date_established = models.DateField('') 
 	awards = models.CharField( max_length = 150, help_text ='kindly list the schools Awards')
 	Direction = models.CharField(max_length = 100, help_text ='give a brief description to your school ' )
+	sport_activities = models.CharField(max_length = 50, ) 
 
 	def get_absolute_url(self):
 		return reverse('schools:detail', kwargs={'pk': self.pk})
