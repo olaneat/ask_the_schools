@@ -5,7 +5,7 @@ from .models import Schools, parents_remark, school_data, profile
 
 @admin.register(Schools)
 class schoolsadmin(admin.ModelAdmin):
-	list_display = ('NAME','MOTTO', 'BADGE', 'ADVANTAGE', 'ADDRESS', 'STATUS', 'FEES_RANGE', 'EMAIL', 'PHONE', 'VIDEO', 'TOWN', 'STATE')
+	list_display = ('SCHOOL_NAME','MOTTO', 'BADGE', 'LEVEL' ,  'ADVANTAGE', 'ADDRESS', 'SCHOOL_TYPE', 'FEES_RANGE', 'EMAIL', 'PHONE', 'VIDEO', 'TOWN', 'STATE')
 
 @admin.register(profile)
 class profile(admin.ModelAdmin):

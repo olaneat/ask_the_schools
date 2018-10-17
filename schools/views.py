@@ -85,7 +85,7 @@ class add_School(SessionWizardView):
 def process_data(form_list):
 	form_data = [form.cleaned_data for form in form_list]
 	
-	send_mail(form_data[0]['profile'],
+	send_mail(form_data[0]['User'],
 		form_data[1]['Schools'], form_data[2]['school_data'],
 		['tosinayoola0@gmail.com', ], fail_silently = False)
 

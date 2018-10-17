@@ -30,8 +30,8 @@ clubs = (
 	)
  	
 sex = [
- 	('male', 'Male'),
- 	('female', 'Female'),
+ 	('male', 'Male Only'),
+ 	('female', 'Female Only'),
  	('mixed', 'Mixed'),
  	]
  
@@ -80,10 +80,12 @@ class profileForm(UserCreationForm):
 
 
 class SchoolsForm(ModelForm):
-	NAME = forms.CharField(
+	SCHOOL_NAME = forms.CharField(
 		widget = forms.TextInput(
 			attrs ={
-			'placeholder': "School Name ...."
+			'title': 'School Name',
+			'class': 'special',
+			
 			}
 	 )
 		)
@@ -91,7 +93,7 @@ class SchoolsForm(ModelForm):
 	MOTTO = forms.CharField(
 		widget = forms.TextInput(
 			attrs ={
-			'placeholder': "School motto  ...."
+			'placeholder': "School motto...."
 			}
 	 )
 		)
@@ -120,7 +122,7 @@ class SchoolsForm(ModelForm):
 
 	class Meta:
 		model = Schools
-		fields = ['NAME','MOTTO', 'BADGE', 'ADVANTAGE', 'GENDER', 'ADDRESS', 'STATUS', 'FEES_RANGE', 'EMAIL', 'PHONE', 'VIDEO', 'TOWN', 'STATE']
+		fields = ['SCHOOL_NAME','MOTTO', 'BADGE', 'LEVEL', 'ADVANTAGE', 'GENDER', 'ADDRESS', 'SCHOOL_TYPE', 'FEES_RANGE', 'EMAIL', 'PHONE', 'VIDEO', 'TOWN', 'STATE']
 
 class school_dataForm(ModelForm):
 	EXTRA_CURRICULUM = forms.MultipleChoiceField(
