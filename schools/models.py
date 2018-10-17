@@ -105,7 +105,7 @@ class Schools(models.Model):
 	SCHOOL_NAME = models.CharField(max_length = 300, null = False )
 	MOTTO = models.CharField(null = False, max_length = 200,  )
 	BADGE = models.ImageField(upload_to = "media/images", null = False, blank= True, help_text = "upload a jpg file ")
-	LEVEL = models.CharField(null = False, max_length = 20, choices =level )
+	LEVEL = models.CharField(null = False, blank=True, max_length = 20, choices =level )
 	ADVANTAGE = models.TextField(null = True, max_length = 1000, help_text = 'what do parents tend to benefit  by entrusting their children in your school not more than 1000 characters'  )
 	ADDRESS = models.CharField(null = False, max_length  = 250 )
 	TOWN = models.CharField(null = False, max_length = 100, help_text = 'enter the Local Government Area')
