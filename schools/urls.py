@@ -1,6 +1,9 @@
+
 from django.urls import path
 from  . import views
 from django.views.generic import TemplateView
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from . forms import profileForm, SchoolsForm, school_dataForm
 from . views import profile, Schools, add_School, Contact
 urlpatterns = [
