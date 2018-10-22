@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 import os
@@ -51,7 +51,7 @@ class add_School(SessionWizardView):
 	template_name =  'schoolprofile.html'
 	file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'images', 'videos'))
 
-	def register(request):
+	def register(self,request):
 		if method.request == "POST" :
 			form = UserCreationForm(request.POST)
 			if form.is_valid():
@@ -67,8 +67,6 @@ class add_School(SessionWizardView):
 
 	
 
-
-
 	def done(self, form_list, **kwargs):
 		form_data = process_data(form_list)
 		return render('index.html', { 'form_data': form_data})
@@ -77,8 +75,9 @@ class add_School(SessionWizardView):
 def process_data(form_list):
 	form_data = [form.cleaned_data for form in form_list]
 	
-	send_mail(form_data[0]['Schools'],
-		form_data[1]['school_data'],
+	send_mail(form_data[0]['User'],
+		form_data[1]['Schools'],
+		form_data[2]['school_data']
 		['tosinayoola0@gmail.com', ], fail_silently = False)
 
 	return form_data
@@ -113,3 +112,21 @@ def send_mail():
 
 
 
+
+#Login
+def Login(request):
+	username = request.POST['username']
+	password = request.POST['password']
+	user = authenticate(request, username=username, password=password)
+	if user is not None:
+		login(request, user)
+		return render('SchoolDetailPage.html')
+
+		
+	else:
+		return render(request, 'login.html')
+
+
+def Logout(request):
+	logout(request)
+	return render('index.hmtl')
