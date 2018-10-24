@@ -146,7 +146,7 @@ class ContactUs(models.Model):
 	full_name = models.CharField(max_length = 300 )
 	title = models.CharField(max_length = 100, blank = True)
 	email= models.EmailField(max_length =100 , null = False )
-	comment = models.TextField(max_length =1000 )
+	message = models.TextField(max_length =1000 )
 
 	def __str__(self):
 		return self.comment

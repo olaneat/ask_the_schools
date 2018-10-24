@@ -58,8 +58,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<form method="post" action="/Contact/">
 				{% csrf_token %}
-				{{ form | crispy }}
-				<button type="button" class="btn btn-success">Send</button>
+				{{form.non_field.error}}
+				{{ form | crispy }} 
+
+
+					<button type="button" class="btn btn-success">Send</button>
 			
 			<br><br><br><br><br>
 

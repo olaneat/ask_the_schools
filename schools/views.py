@@ -51,9 +51,16 @@ class add_School(SessionWizardView):
 	template_name =  'schoolprofile.html'
 	file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'images', 'videos'))
 
+	def done(self, form_list, **kwargs):
+		return render( self.request, 'index.html', { 'form_data': [form.cleaned_data for form in form_list]
+		
+		})
+		
+
+
 	def register(self,request):
-		if method.request == "POST" :
-			form = UserCreationForm(request.POST)
+		if request.method == "POST" :
+			form = UserCreationForm(POST)
 			if form.is_valid():
 				form.save()
 				email = form.cleaned_data.get('email')
@@ -63,24 +70,21 @@ class add_School(SessionWizardView):
 
 		else:
 			form = UserCreationForm()
-			return render(request, 'schoolprofile.html', {'form': form})
 
+		return render(request, 'schoolprofile.html', {'form': form})
 	
 
-	def done(self, form_list, **kwargs):
-		form_data = process_data(form_list)
-		return render('index.html', { 'form_data': form_data})
+
 			
+#def process_data(form_list):
+#	form_data = [form.cleaned_data for form in form_list]
+#	return form_data
+		#send_mail(form_data[0]['User'],
+	#	form_data[1]['Schools'],
+	#	form_data[2]['school_data']
+	#	['tosinayoola0@gmail.com', ], fail_silently = False)
 
-def process_data(form_list):
-	form_data = [form.cleaned_data for form in form_list]
-	
-	send_mail(form_data[0]['User'],
-		form_data[1]['Schools'],
-		form_data[2]['school_data']
-		['tosinayoola0@gmail.com', ], fail_silently = False)
 
-	return form_data
 
 
 
@@ -90,6 +94,9 @@ def Contact(request):
 	if request.method == 'POST':
 		form = ContactUsForm(request.POST)
 		if form.is_valid():
+			title = form.cleaned_data['subject']
+			message = form.cleaned_data['message']
+			full_name = form.cleaned_data['full_name']
 			model_instance =form.save(commit = False)
 			model_instance.timestamp = timezone.now()
 			model_instance.save()
