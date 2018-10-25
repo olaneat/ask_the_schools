@@ -4,10 +4,22 @@ from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from . models import profile, Schools, school_data, ContactUs
+from . models import Schools, school_data, ContactUs
 
 
-
+months = (
+	('Jan', 'January'),
+	('Feb', 'Feburary'),
+	('Mar', 'March'),
+	('Apr', 'April'),
+	('Jun', 'June'),
+	('Jul', 'July'),
+	('Aug', 'August'),
+	('Sep', 'September'),
+	('Oct', 'October'),
+	('Nov', 'November'),
+	('Dec', 'December')
+		)
 
 
 clubs = (
@@ -119,6 +131,7 @@ class SchoolsForm(ModelForm):
 		choices = sex, 
 		widget = forms.RadioSelect(),
 		)
+
 
 	class Meta:
 		model = Schools

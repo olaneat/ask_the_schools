@@ -19,7 +19,7 @@ from formtools.wizard.views import SessionWizardView, WizardView
 from django.contrib.auth import login, authenticate
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import  Schools, profile, school_data, parents_remark
+from .models import  Schools, school_data, parents_remark
 from django.contrib.auth.forms import UserCreationForm
 from django.core.mail import send_mail
 from django.views import generic
@@ -51,11 +51,20 @@ class add_School(SessionWizardView):
 	template_name =  'schoolprofile.html'
 	file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'images', 'videos'))
 
-	def done(self, form_list, **kwargs):
-		return render( self.request, 'index.html', { 'form_data': [form.cleaned_data for form in form_list]
-		
-		})
-		
+	def done(self, form_list, form_dict, **kwargs):
+		form_data = process_data(form_list)
+		return render('index.html',  {form_data: 'form_data'})
+	
+def process_data(form_list):
+	form_data = [form.cleaned_data for form in form_list]
+	data = [' User', 'Schools', 'school_data']
+	return form_data
+	send_mail(form_data[0]['User'],
+	form_data[1]['Schools'],
+	form_data[2]['school_data']
+	['tosinayoola0@gmail.com', ], fail_silently = False)
+
+
 
 
 	def register(self,request):
@@ -73,20 +82,6 @@ class add_School(SessionWizardView):
 
 		return render(request, 'schoolprofile.html', {'form': form})
 	
-
-
-			
-#def process_data(form_list):
-#	form_data = [form.cleaned_data for form in form_list]
-#	return form_data
-		#send_mail(form_data[0]['User'],
-	#	form_data[1]['Schools'],
-	#	form_data[2]['school_data']
-	#	['tosinayoola0@gmail.com', ], fail_silently = False)
-
-
-
-
 
 
 

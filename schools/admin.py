@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Schools, parents_remark, school_data, profile
+from .models import Schools, parents_remark, school_data
 # Register your models here.
 
 
@@ -7,9 +7,6 @@ from .models import Schools, parents_remark, school_data, profile
 class schoolsadmin(admin.ModelAdmin):
 	list_display = ('SCHOOL_NAME','MOTTO', 'BADGE', 'LEVEL' ,  'ADVANTAGE', 'ADDRESS', 'SCHOOL_TYPE', 'FEES_RANGE', 'EMAIL', 'PHONE', 'VIDEO', 'TOWN', 'STATE')
 
-@admin.register(profile)
-class profile(admin.ModelAdmin):
-	list_display = ('title', 'first_name', 'surname', 'email')
 
 @admin.register(school_data)
 class school_data(admin.ModelAdmin):

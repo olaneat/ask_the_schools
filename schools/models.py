@@ -8,7 +8,12 @@ from django.urls import reverse
 # Create your models here.
 
 
-school_fees  =( 
+
+
+
+
+class Schools(models.Model):
+	school_fees  =( 
 	('#51,000.00 - #100,000.00', '#51,000.00 - #100,000.00'),
 	('#101,000.00 - 200,000.00', '#101,000.00 - 200,000.00' ),
 	('#201,000.00  - 300,000.00', '#201,000.00  - 300,000.00'),
@@ -23,22 +28,7 @@ school_fees  =(
 	)
 
 
-Title =(
-	('Mr.', 'Mr.'),
-	('Mrs.', 'Mrs.'),
-	('Miss', 'Miss'),
-	('Barr.', 'Barr.'),
-	('Dr.', 'Dr'),
-	('Prof', 'Prof'),
-	)
-
-school_status = (
-	('Day', 'Day'),
-	('Boarding', 'Boarding'),
-	('Boarding and Day', 'Boarding and Day'),
-	) 
-
-STATE = (
+	STATE = (
 	('ABI', 'ABIA'),
 	('ADA', 'ADAMAWA'),
 	('AKW', 'AKWA IBOM'),
@@ -77,31 +67,20 @@ STATE = (
 	('ZAM', 'ZAMFARA'),
 	('FCT', 'FEDERAL CAPITAL TERRITORY'),
 	)
-curriculum = (
-	('Bri', 'British'),
-	('Ame', 'American'),
-	('Bri & Ame', 'British American'),
-	('Ger', 'German'),
-	('Fre', 'French'),
 
-	)
+	school_status = (
+	('Day', 'Day'),
+	('Boarding', 'Boarding'),
+	('Boarding and Day', 'Boarding and Day'),
+	) 
 
-level = (
+	level = (
 	('Pri', 'Primary' ),
 	('Sec', 'Secondary',),
 	('Pri and Sec', 'Primary and Secondary')
 	) 
 
-class profile(models.Model):
-	title = models.CharField(max_length = 5, choices = Title)
-	first_name = models.CharField(max_length = 50, blank = False)
-	surname = models.CharField(max_length = 50, blank = False)
-	email = models.EmailField(max_length = 100, help_text = "enter your E-mail address here")
-	password = models.CharField(max_length =100,  )
 
-
-
-class Schools(models.Model):
 	SCHOOL_NAME = models.CharField(max_length = 300, null = False )
 	MOTTO = models.CharField(null = False, max_length = 200,  )
 	BADGE = models.ImageField(upload_to = "media/images", null = False, blank= True, help_text = "upload a jpg file ")
@@ -123,6 +102,17 @@ class Schools(models.Model):
 
 
 class school_data(models.Model):
+
+	curriculum = (
+	('Bri', 'British'),
+	('Ame', 'American'),
+	('Bri & Ame', 'British American'),
+	('Ger', 'German'),
+	('Fre', 'French'),
+
+	)
+
+
 	CURRICULUM = models.CharField(max_length =20,  choices = curriculum )
 	WEBSITE = models.URLField(max_length = 100, blank = True )
 	EXTRA_CURRICULUM = models.CharField(max_length = 20)
