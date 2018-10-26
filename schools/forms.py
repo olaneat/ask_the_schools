@@ -7,58 +7,10 @@ from django.forms import ModelForm
 from . models import Schools, school_data, ContactUs
 
 
-months = (
-	('Jan', 'January'),
-	('Feb', 'Feburary'),
-	('Mar', 'March'),
-	('Apr', 'April'),
-	('Jun', 'June'),
-	('Jul', 'July'),
-	('Aug', 'August'),
-	('Sep', 'September'),
-	('Oct', 'October'),
-	('Nov', 'November'),
-	('Dec', 'December')
-		)
 
-
-clubs = (
-	('jet', 'Jet Club'),
-	('Science', 'Science Club'),
-	('Drama', 'Drama Club'),
-	('Art & Culture', 'Art & Culture Club'),
-	('Debate ', 'Debate Club',),
-	('Comedy', 'Comedy Club'),
-	('Math', 'Mathematic Club'),
-	('Literature', 'Literature Club'),
-	('Books', 'Books Club'),
-	('History', 'History Club'),
-	('Press', 'Press Information and Photography Club'),
-	('Adventure', 'Adventure Club'),
-	('Religious', 'Religious Club'),
-	('Charity', 'Charity Club'),
-	('Feeders', 'Feeders Club'),
-
-	)
  	
-sex = [
- 	('male', 'Male Only'),
- 	('female', 'Female Only'),
- 	('mixed', 'Mixed'),
- 	]
  
 
-sport = (
-	( 'Swimming Pool', 'Swimming '),
-	('BasketBall Court ','BasketBall' ),
-	('FootBall Field', 'FootBall'),
-	('HandBall Court', 'HandBall'),
-	('VolleyBall Court', 'VolleyBall'),
-	('Race Track', 'Race'),
-	('Javelline', 'Javelline'),
-	('Short Put', 'Short Put'),
-	('Chess Board', 'Chess')
-	) 
 
 
 
@@ -92,6 +44,12 @@ class profileForm(UserCreationForm):
 
 
 class SchoolsForm(ModelForm):
+	sex = [
+ 	('male', 'Male Only'),
+ 	('female', 'Female Only'),
+ 	('mixed', 'Mixed'),
+ 	]
+
 	SCHOOL_NAME = forms.CharField(
 		widget = forms.TextInput(
 			attrs ={
@@ -138,6 +96,38 @@ class SchoolsForm(ModelForm):
 		fields = ['SCHOOL_NAME','MOTTO', 'BADGE', 'LEVEL', 'ADVANTAGE', 'GENDER', 'ADDRESS', 'SCHOOL_TYPE', 'FEES_RANGE', 'EMAIL', 'PHONE', 'VIDEO', 'TOWN', 'STATE']
 
 class school_dataForm(ModelForm):
+	clubs = (
+	('jet', 'Jet Club'),
+	('Science', 'Science Club'),
+	('Drama', 'Drama Club'),
+	('Art & Culture', 'Art & Culture Club'),
+	('Debate ', 'Debate Club',),
+	('Comedy', 'Comedy Club'),
+	('Math', 'Mathematic Club'),
+	('Literature', 'Literature Club'),
+	('Books', 'Books Club'),
+	('History', 'History Club'),
+	('Press', 'Press Information and Photography Club'),
+	('Adventure', 'Adventure Club'),
+	('Religious', 'Religious Club'),
+	('Charity', 'Charity Club'),
+	('Feeders', 'Feeders Club'),
+
+	)
+
+	sport = (
+	( 'Swimming Pool', 'Swimming '),
+	('BasketBall Court ','BasketBall' ),
+	('FootBall Field', 'FootBall'),
+	('HandBall Court', 'HandBall'),
+	('VolleyBall Court', 'VolleyBall'),
+	('Race Track', 'Race'),
+	('Javelline', 'Javelline'),
+	('Short Put', 'Short Put'),
+	('Chess Board', 'Chess')
+	) 
+
+	
 	EXTRA_CURRICULUM = forms.MultipleChoiceField(
 		label = 'CLUB ACTIVITIES',
 		required = False,
