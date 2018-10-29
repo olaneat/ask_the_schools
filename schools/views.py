@@ -27,24 +27,10 @@ from django.views import generic
 
 
 
-#class SchoolDetailView(generic.ListView):
-#	models = Schools
-
 # Create your views here.
 def index(request):
 	return render (request, 'index.html')
 
-#def index(request):
-	"view for the home page of the project"
-	num_of_schoool = Schools.objects.all().count()
-	name_of_school = Schools.objects.list()
-	return render(
-		request,
-		'index.html',
-		context = {
-		'numbers of registered schools': num_of_schoool, 'name_of_school': name_of_school},
-
-		)
 
 	
 class add_School(SessionWizardView):
@@ -52,37 +38,50 @@ class add_School(SessionWizardView):
 	file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'images', 'videos'))
 
 	def done(self, form_list, form_dict, **kwargs):
-		form_data = process_data(form_list)
-		return render('index.html',  {form_data: 'form_data'})
-	
-def process_data(form_list):
+		form_data = process_form_data(form_list)
+		return render('index.html',  { form_data:'form_data'})
+
+
+def process_form_data(form_list):
 	form_data = [form.cleaned_data for form in form_list]
 	data = [' User', 'Schools', 'school_data']
-	return form_data
-	send_mail(form_data[0]['User'],
-	form_data[1]['Schools'],
-	form_data[2]['school_data']
-	['tosinayoola0@gmail.com', ], fail_silently = False)
+	#send_mail(
+		#form_data[0]['Schools'],
+		#form_data[1]['school_data']
+		#['tosinayoola0@gmail.com', ], fail_silently = False)
+	#	)
+	for i, x in enumerate(form_data):
+		print('value of x: ', x)
+		inst = data[i]
+		newObject = inst()
+		print("BNewObejct", newObject)
+
+	for k, v in x.items():
+		print('value of key: ', k)
+		print("value of value: ", v)
+		setattr(newObject, k, v)
+		getattr(newObject, k)
 
 
-
-
-	def register(self,request):
-		if request.method == "POST" :
-			form = UserCreationForm(POST)
-			if form.is_valid():
-				form.save()
-				email = form.cleaned_data.get('email')
-				password = form.cleaned_data.get('password1')
-				user = authenticate(email=email, password = raw_password)
-				login = (request, user )
-
-		else:
-			form = UserCreationForm()
-
-		return render(request, 'schoolprofile.html', {'form': form})
 	
 
+	#def register(self,request):
+	#	if request.method == "POST" :
+	#		form = UserCreationForm(POST)
+	#		if form.is_valid():
+	#			email = form.cleaned_data.get('email')
+	#			password = form.cleaned_data.get('password1')
+	#			user = authenticate(email=email, password = raw_password)
+	#			login = (request, user )
+	#			form.save()
+#
+#		else:
+#			form = UserCreationForm()
+#
+#		return render(request, 'schoolprofile.html', {'form': form})
+	
+
+	
 
 
 def Contact(request):
@@ -109,8 +108,6 @@ def send_mail():
 		'tosinayoola0@gmail.com',
 		['tosinayoola0@gmail.com', '']
 		)
-
-
 
 
 

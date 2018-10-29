@@ -1,16 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.forms import ModelForm
-import uuid
 from . choice_mode import school_status, level, curriculum, STATE, school_fees
 from datetime import date
 from django.urls import reverse
 
 # Create your models here.
-
-
-
-
 
 
 class Schools(models.Model):
@@ -44,8 +38,7 @@ class school_data(models.Model):
 	EXTRA_CURRICULUM = models.CharField(max_length = 20)
 	AWARDS = models.CharField( max_length = 150, blank = True,  help_text ='kindly list the schools Awards')
 	DIRECTION = models.CharField(max_length = 100, help_text ='give a brief description to your school ' )
-	SPORT_ACTIVITIES = models.CharField(max_length = 50, null = False ) 
-
+	
 	def get_absolute_url(self):
 		return reverse('schools:detail', kwargs={'pk': self.pk})
 
