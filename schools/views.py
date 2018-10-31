@@ -20,7 +20,7 @@ from django.contrib.auth import login, authenticate
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import  Schools, school_data, parents_remark
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.mail import send_mail
 from django.views import generic
 
@@ -40,6 +40,9 @@ class add_School(SessionWizardView):
 	def done(self, form_list, form_dict, **kwargs):
 		form_data = process_form_data(form_list)
 		return render('index.html',  { form_data:'form_data'})
+		if form.is_valid():
+			form.save()
+	
 
 
 def process_form_data(form_list):
@@ -94,7 +97,9 @@ def Contact(request):
 			model_instance =form.save(commit = False)
 			model_instance.timestamp = timezone.now()
 			model_instance.save()
+			form.save()
 			return redirect('/')
+
 
 
 	else:
@@ -113,15 +118,12 @@ def send_mail():
 
 
 #Login
-def Login(request):
-	username = request.POST['username']
-	password = request.POST['password']
-	user = authenticate(request, username=username, password=password)
-	if user is not None:
-		login(request, user)
-		return render('SchoolDetailPage.html')
-
-		
+def login_view(request):
+	if request.method == 'POST':
+		form = AuthenticationForm(data= request.POST)
+		if form.is_valid():
+			return render('SchoolDetailPage.html')
+	
 	else:
 		return render(request, 'login.html')
 
