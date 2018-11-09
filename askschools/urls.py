@@ -21,6 +21,7 @@ from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('schools/', include('schools.urls')),
@@ -29,10 +30,10 @@ urlpatterns = [
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 LOGIN_REDIRECT_URL = '/'
 
-urlpatterns = [
+# urlpatterns = [
 #     url(r'^login/$', auth_views.login, name='login'),
   #  url(r'^logout/$', auth_views.logout, name='logout'),
-]
+# ]
 
 #if settings.DEBUG:
  #   urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
